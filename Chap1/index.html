@@ -1,10 +1,5 @@
 <html>
     <head>
-        <!--
-            // You have to change 'development' to 'production' when the app is deployed.
-            <script crossorigin src="https://unpkg.com/react@16/umd/react.production.js"></script>
-            <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.js"></script>
-        -->
         <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     </head>
@@ -17,8 +12,8 @@
                     super(props);
                 }
                 render() {
-                    return createElement('button', null, 'Like');
-                    // <button>Like</button>
+                    return createElement('button', { onClick: () => { console.log('clicked.') }, type: 'submit' } , 'Like');   
+                    // <button onclick="() => { console.log('clicked.') }" type="submit">Like</button>
                 }
             }
         </script>
