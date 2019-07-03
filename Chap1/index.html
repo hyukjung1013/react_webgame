@@ -2,10 +2,11 @@
     <head>
         <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     </head>
     <body>
         <div id="root"></div>
-        <script>
+        <script type="text/babel">
             const createElement = React.createElement;
             class LikeButton extends React.Component {
                 constructor(props) {
@@ -15,21 +16,20 @@
                     }
                 }
                 render() {
-                    return createElement(
-                        'button', { onClick: () => { 
-                            if(this.state.liked === true) {
-                                this.setState({ liked: false })
-                            } else {
-                                this.setState({ liked: true })
-                            }}, 
-                        type: 'submit' },
-                        this.state.liked === true ? 'Liked' : 'Like'
-                    );   
+                    return <button type="submit" onClick={ () => {
+                        if(this.state.liked === true) {
+                            this.setState({ liked: false })
+                        } else {
+                            this.setState({ liked: true })
+                        }
+                    } }>
+                        {this.state.liked === true ? 'Liked' : 'Like'}
+                    </button>  
                 }
             }
         </script>
-        <script>
-            ReactDOM.render(createElement(LikeButton), document.querySelector('#root'));
+        <script type="text/babel">
+            ReactDOM.render(<LikeButton />, document.querySelector('#root'));
         </script>
     </body>
 </html>
