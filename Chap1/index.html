@@ -10,10 +10,21 @@
             class LikeButton extends React.Component {
                 constructor(props) {
                     super(props);
+                    this.state = {
+                        liked: false,
+                    }
                 }
                 render() {
-                    return createElement('button', { onClick: () => { console.log('clicked.') }, type: 'submit' } , 'Like');   
-                    // <button onclick="() => { console.log('clicked.') }" type="submit">Like</button>
+                    return createElement(
+                        'button', { onClick: () => { 
+                            if(this.state.liked === true) {
+                                this.setState({ liked: false })
+                            } else {
+                                this.setState({ liked: true })
+                            }}, 
+                        type: 'submit' },
+                        this.state.liked === true ? 'Liked' : 'Like'
+                    );   
                 }
             }
         </script>
