@@ -9,65 +9,49 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-        class GuGudan extends React.Component {
+        const GuGudan = () => {
 
-            constructor(props) {
-               super(props);
-               this.state = {
-                    first: Math.ceil(Math.random() * 9),
-                    second: Math.ceil(Math.random() * 9),
-                    input: '',
-                    message: '',
-                    result: '',
-                };
+            const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+            const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+            const [input, setInput] = React.useState('');
+            const [message, setMessage] = React.useState('');
+            const [result, setResult] = React.useState('');
+
+            const textareaRef = React.useRef(null);
+
+            const onChangeInput = (e) => {
+                setInput(e.target.value);
             }
 
-            onChangeInput = (event) => {
-                this.setState({
-                    input: event.target.value
-                });
-            }
-
-            onSubmitForm = (e) => {
+            const onSubmitForm = (e) => {
                 e.preventDefault();
-                if (parseInt(this.state.input) === this.state.first * this.state.second) {
-                    this.setState((prevState) => {
-                        return {
-                            first: Math.ceil(Math.random() * 9),
-                            second: Math.ceil(Math.random() * 9),
-                            input: '',
-                            message: 'Correct',
-                            result: prevState.input,
-                        }
-                    });
-                    this.textareaRef.focus();
+                if (parseInt(input) === first * second) {
+                    setFirst(Math.ceil(Math.random() * 9));
+                    setSecond(Math.ceil(Math.random() * 9));
+                    setInput('');
+                    setMessage('Correct');
+                    setResult(input);
+                    textareaRef.current.focus();
                 } else {
-                    this.setState((prevState) => {
-                        return {
-                            input: '',
-                            message: 'Incorrect',
-                            result: '',
-                        }
-                    });
-                    this.textareaRef.focus();
+                    setInput('');
+                    setMessage('Incorrect');
+                    setResult('');
+                    textareaRef.current.focus();
                 }
             }
 
             textareaRef
 
-            render() {
-                return(
-                    <React.Fragment>
-                        <div>{this.state.first} 곱하기 {this.state.second} ?</div>
-                        <form type="number" onSubmit={this.onSubmitForm}>
-                            <input type="number" value={this.state.input} onChange={this.onChangeInput}/>
-                            <button type="submit">Enter</button>
-                        </form>
-                        <div>{this.state.message} {this.state.result}</div>
-                        <textarea ref={ c => { this.textareaRef = c}} />
-                    </React.Fragment>
-                ) ;
-            }
+            return <React.Fragment>
+                    <div>{first} 곱하기 {second} ?</div>
+                    <form type="number" onSubmit={onSubmitForm}>
+                        <input type="number" value={input} onChange={onChangeInput}/>
+                        <button type="submit">Enter</button>
+                    </form>
+                    <div>{message} {result}</div>
+                    <textarea ref={textareaRef} />
+            </React.Fragment>
+            
         }
     </script>
     <script type="text/babel">
