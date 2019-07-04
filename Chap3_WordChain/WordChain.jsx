@@ -1,50 +1,38 @@
 const React = require('react');
-const { Component } = React;
+const { useState, useRef } = React;
 
-class WordChain extends Component {
+const WordChain = () => {
 
-    state = {
-        word: '시작',
-        input: '',
-        result: '',
-    };
+    const [word, setWord] = useState('시작');
+    const [input, setInput] = useState('');
+    const [result, setResult] = useState('');
 
-    onChangeInput = (e) => {
-        this.setState( { input: e.target.value } );
+    const onChangeInput = (e) => {
+        setInput(e.target.value);
     }
 
-    onSubmitForm = (e) => {
+    const onSubmitForm = (e) => {
         e.preventDefault();
-        if ( this.state.word[ this.state.word.length -1 ] === this.state.input[0]) {
-            this.setState({
-                result: 'Correct',
-                word: this.state.input,
-                input: '',
-            });
-            this.inputRef.focus();
+        if ( word[word.length-1] === input[0]) {
+            setResult('Correct!!');
+            setWord(input);
+            setInput('');
+            inputRef.current.focus();
         } else {
-            this.setState({
-                result: 'Incorrect',
-                input: '',
-            });
-            this.inputRef.focus();
+            setResult('Incorrect!!');
+            setInput('');
+            inputRef.current.focus();
         }
     }
 
-    inputText;
-    inputRef = (c) => {
-        this.inputText = c;
-    };
-
-    render() {
-        return <>
-            <div>{this.state.word}</div>
-            <form onSubmit={this.onSubmitForm}>
-                <input ref={this.inputRef} value={this.state.input} onChange={this.onChangeInput} />
-                <button>입력</button>
-            </form>
-            <div>{this.state.result}</div>
-        </>
-    }
+    const inputRef = useRef(null);
+    
+    return <>
+        <div>{word}</div>
+        <form onSubmit={onSubmitForm}>
+            <input ref={inputRef} value={input} onChange={onChangeInput} />
+            <button>입력</button>
+        </form>
+    </>
 }
 module.exports = WordChain;
