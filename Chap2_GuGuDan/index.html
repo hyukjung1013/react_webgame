@@ -40,6 +40,7 @@
                             result: prevState.input,
                         }
                     });
+                    this.textareaRef.focus();
                 } else {
                     this.setState((prevState) => {
                         return {
@@ -48,8 +49,11 @@
                             result: '',
                         }
                     });
+                    this.textareaRef.focus();
                 }
             }
+
+            textareaRef
 
             render() {
                 return(
@@ -60,6 +64,7 @@
                             <button type="submit">Enter</button>
                         </form>
                         <div>{this.state.message} {this.state.result}</div>
+                        <textarea ref={ c => { this.textareaRef = c}} />
                     </React.Fragment>
                 ) ;
             }
