@@ -31,18 +31,20 @@ class WordChain extends Component {
         }
     }
 
-    inputRef;
+    inputText;
+    inputRef = (c) => {
+        this.inputText = c;
+    };
 
     render() {
         return <>
             <div>{this.state.word}</div>
             <form onSubmit={this.onSubmitForm}>
-                <input ref={(c) => { this.inputRef = c }} value={this.state.input} onChange={this.onChangeInput} />
+                <input ref={this.inputRef} value={this.state.input} onChange={this.onChangeInput} />
                 <button>입력</button>
             </form>
             <div>{this.state.result}</div>
         </>
     }
 }
-
 module.exports = WordChain;
