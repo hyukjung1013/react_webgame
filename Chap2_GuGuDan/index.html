@@ -45,7 +45,8 @@
             return <React.Fragment>
                     <div>{first} 곱하기 {second} ?</div>
                     <form type="number" onSubmit={onSubmitForm}>
-                        <input type="number" value={input} onChange={onChangeInput}/>
+                        <label htmlFor="input">INPUT </label>
+                        <input id="input" className="input" type="number" value={input} onChange={onChangeInput}/>
                         <button type="submit">Enter</button>
                     </form>
                     <div>{message} {result}</div>
