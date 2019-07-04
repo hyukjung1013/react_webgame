@@ -3,6 +3,11 @@ import Try from './Try';
 
 class NumberBaseball extends Component {
 
+    constructor(props) {
+        super(props);
+        this.onSubmitForm = this.onSubmitForm.bind(this);
+    }
+
     state = {
         value: '',
     }
@@ -14,7 +19,7 @@ class NumberBaseball extends Component {
         { fruit: 'melon', color: 'green'}, 
     ];
     
-    onSubmitForm = () => {}
+    onSubmitForm() {}
 
     onChangeInput = () => {}
 
