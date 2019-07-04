@@ -17,6 +17,7 @@
                     first: Math.ceil(Math.random() * 9),
                     second: Math.ceil(Math.random() * 9),
                     input: '',
+                    message: '',
                     result: '',
                 };
             }
@@ -30,16 +31,22 @@
             onSubmitForm = (e) => {
                 e.preventDefault();
                 if (parseInt(this.state.input) === this.state.first * this.state.second) {
-                    this.setState({
-                        first: Math.ceil(Math.random() * 9),
-                        second: Math.ceil(Math.random() * 9),
-                        input: '',
-                        result: 'Correct',
+                    this.setState((prevState) => {
+                        return {
+                            first: Math.ceil(Math.random() * 9),
+                            second: Math.ceil(Math.random() * 9),
+                            input: '',
+                            message: 'Correct',
+                            result: prevState.input,
+                        }
                     });
                 } else {
-                    this.setState({
-                        input: '',
-                        result: 'Incorrect',
+                    this.setState((prevState) => {
+                        return {
+                            input: '',
+                            message: 'Incorrect',
+                            result: '',
+                        }
                     });
                 }
             }
@@ -52,7 +59,7 @@
                             <input type="number" value={this.state.input} onChange={this.onChangeInput}/>
                             <button type="submit">Enter</button>
                         </form>
-                        <div>{this.state.result}</div>
+                        <div>{this.state.message} {this.state.result}</div>
                     </React.Fragment>
                 ) ;
             }
