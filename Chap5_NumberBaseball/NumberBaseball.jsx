@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
+import Try from './Try';
 
 class NumberBaseball extends Component {
 
+    state = {
+        value: '',
+    }
+
+    fruits = [
+        { fruit: 'apple', color: 'red'}, 
+        { fruit: 'banana', color: 'yellow'}, 
+        { fruit: 'orange', color: 'orange'}, 
+        { fruit: 'melon', color: 'green'}, 
+    ];
+    
+    onSubmitForm = () => {}
+
+    onChangeInput = () => {}
+
     render() {
-        return <>   
+        return <>
+            <form onSubmit={this.onSubmitForm}>
+                <input maxLength={4} value={this.state.value} onChange={this.onChangeInput}/>
+            </form>
             <ul>
-                {['orange', 'apple', 'banana', 'melon', 'tomato'].map( (element, index) => {
+                {this.fruits.map( (element, index) => {
                     return (
-                        <li key={element} >({index}) {element}</li>
-                        // React does not recommend using indexes for keys.
+                        <ul>
+                            <Try v={element.fruit} i={index}/>
+                        </ul>
                     )
                 })}
             </ul>
