@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     name: 'word-chain-setting',
     mode: 'development',    // production
-    devtool: 'eval',
+    devtool: 'eval',        // hidden-source-map
     resolve: {
         extensions: ['.js', '.jsx']
     },
@@ -20,7 +20,14 @@ module.exports = {
             loader: 'babel-loader',
             options: {
                 presets: [
-                    '@babel/preset-env',
+                    ['@babel/preset-env', {
+                        targets: {
+                            browsers: [     // https://www.npmjs.com/package/browserslist
+                                'last 2 chrome versions',
+                                '> 5% in KR'
+                            ],
+                        }
+                    }],
                     '@babel/preset-react',
                 ],
                 plugins: ['@babel/plugin-proposal-class-properties'],
