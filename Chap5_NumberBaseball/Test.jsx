@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Test extends Component {
+class Test extends PureComponent {
     state = {
         counter: 0,
     };
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (this.state.counter !== nextState.counter) {
-            return true;    // Rendering
-        } 
-        return false;       // No rendering
-    }
+    // 'PureComponent' performs 'shouldComponentUpdate()' itself.
+    // But it has problems with re-rendering 
+    // when 'state' contains object, array, any other complex structure.
 
     onClick = () => {
         this.setState({});  
-        // No changes but re-rendered.
-        // So 'shouldComponentUpdate()' was added.
     }
 
     render() {
