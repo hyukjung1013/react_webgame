@@ -53,7 +53,7 @@ class RSP extends Component {
         clearInterval(this.interval);
     }
 
-    onClickBtn = (choice) => {
+    onClickBtn = (choice) => () => {
         const { imgCoordinate } = this.state;
         clearInterval(this.interval);
         const myScore = scores[choice];
@@ -88,9 +88,9 @@ class RSP extends Component {
         return <>  
             <div id="computer" style={{ background: `url(https://en.pimg.jp/023/182/267/1/23182267.jpg) ${imgCoordinate} 0` }} />
             <div>
-                <button id="rock" className="btn" onClick={() => this.onClickBtn('rock')}>바위</button>
-                <button id="scissor" className="btn" onClick={() => this.onClickBtn('scissor')}>가위</button>
-                <button id="paper" className="btn" onClick={() => this.onClickBtn('paper')}>보</button>
+                <button id="rock" className="btn" onClick={this.onClickBtn('rock')}>바위</button>
+                <button id="scissor" className="btn" onClick={this.onClickBtn('scissor')}>가위</button>
+                <button id="paper" className="btn" onClick={this.onClickBtn('paper')}>보</button>
              </div>
              <div>{result}</div>
             <div>현재 {score}점</div>
