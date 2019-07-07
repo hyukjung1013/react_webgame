@@ -1,7 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { CLICK_CELL, CHANGE_TURN } from './TicTacToe';
+import { TableContext } from './TicTacToe'
 
-const Td = ({ rowIndex, cellIndex, dispatch, cellData }) => {
+const Td = ({ rowIndex, cellIndex, cellData }) => {
+
+    const { dispatch } = useContext(TableContext)
 
     const onClickTd = useCallback(() => {
         console.log(rowIndex, cellIndex);
@@ -9,7 +12,6 @@ const Td = ({ rowIndex, cellIndex, dispatch, cellData }) => {
             return;
         } 
         dispatch({ type: CLICK_CELL, row: rowIndex, cell: cellIndex });
-        // dispatch({ type: CHANGE_TURN });
     }, [cellData]);
 
     return (

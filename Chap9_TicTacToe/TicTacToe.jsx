@@ -1,5 +1,10 @@
-import React, { useReducer, useCallback, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect, createContext } from 'react';
 import Table from './Table'
+
+export const TableContext = createContext({
+  // Initial Values
+  dispatch:  () => {},
+});
 
 const initialState = {
   winner: '',
@@ -108,8 +113,10 @@ const TicTacToe = () => {
   
   return (
     <>
-      <Table onClick={onClickTable} tableData={state.tableData} dispatch={dispatch}/>
-      {state.winner && <div>{state.winner}님의 승리</div>}
+      <TableContext.Provider value={{ dispatch: dispatch }}>
+        <Table onClick={onClickTable} tableData={state.tableData}/>
+        {state.winner && <div>{state.winner}님의 승리</div>}
+      </TableContext.Provider>
     </>
   )
 }
