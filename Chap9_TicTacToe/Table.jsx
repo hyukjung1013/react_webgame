@@ -13,5 +13,4 @@ const Table = ({ tableData, dispatch }) => {
     );
 }
  
-
 export default Table;
