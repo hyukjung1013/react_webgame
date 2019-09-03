@@ -6,7 +6,11 @@ import ThirdComponent from './ThirdComponent'
 
 class ComponentMatcher extends Component {
     render() {
-        console.log(this.props); 
+        console.log(this.props.location.search);         
+        console.log(this.props.location.search);
+        var params = new URLSearchParams(this.props.location.search.slice(1));
+        console.log(params.get('name'));
+
         if ( this.props.match.params.name === 'first' ) {
             return <FirstComponent />
         } else if( this.props.match.params.name === 'second' ) {
