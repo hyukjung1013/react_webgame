@@ -13,7 +13,8 @@ class MyRouter extends Component {
 					<Link to="/app/third">세번째 컴포넌트</Link><br />
                 </header> 
                 <div>
-                    <Route path="/app/:name" component={ComponentMatcher}></Route>
+                    {/* <Route path="/app/:name" component={ () => <ComponentMatcher props="1234 " /> }></Route> */}
+                    <Route path="/app/:name" render={ (props) => <ComponentMatcher {...props} /> }></Route>
                 </div>
             </BrowserRouter>
         );
